@@ -6,15 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cely404.nomad.R;
 import com.cely404.nomad.data.Trip;
 import com.cely404.nomad.data.TripData;
 
 import java.util.List;
 
-/**
- * Created by David on 7/16/2014.
- */
 public class TripFragment extends ListFragment {
 
     List<Trip> flowers = new TripData().getTrips();
@@ -36,7 +32,6 @@ public class TripFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.trip_fragment, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.trip_fragment, container, false);
     }
 }
