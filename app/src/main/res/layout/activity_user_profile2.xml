@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_user_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".data.UserProfile">
+    tools:context="com.cely404.nomad.UserProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@id/app_bar"
@@ -27,8 +26,9 @@
     <fragment
         android:id="@+id/trip_fragment"
         android:layout_below="@id/app_bar"
-        android:name="com.cely404.nomad.VideoListFragment"
+        android:name="com.cely404.nomad.TripFragment"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         tools:layout="@layout/trip_fragment"/>
+
 </RelativeLayout>

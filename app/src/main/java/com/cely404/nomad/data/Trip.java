@@ -2,9 +2,8 @@ package com.cely404.nomad.data;
 
 import android.os.Bundle;
 
-/**
- * Created by aracely_payan93 on 3/12/16.
- */
+import com.google.android.gms.maps.model.LatLng;
+
 public class Trip {
 
     //constants for field reference
@@ -18,15 +17,43 @@ public class Trip {
     private String departingCity;
     private String destinationCity;
     private int organizerId;
+    private int tripId;
     private String description;
     private String departureDate;
+    private LatLng latLng;
 
+    //getters and setters
+
+    //used when creating the data object
+    public Trip(String departingCity, String destinationCity, int organizerId, String description, String departureDate, LatLng latLng){
+        this.departingCity = departingCity;
+        this.destinationCity = destinationCity;
+        this.organizerId = organizerId;
+        this.description = description;
+        this.departureDate = departureDate;
+        this.latLng = latLng;
+    }
+
+    public int getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
+    public LatLng getLatLng() {
+        return latLng;
+    }
+
+    public void setLatLng(LatLng latLng) {
+        this.latLng = latLng;
+    }
 
     public String getDepartingCity() {
         return departingCity;
     }
 
-    //getters and setters
     public void setDepartingCity(String departingCity) {
         this.departingCity = departingCity;
     }
@@ -60,15 +87,6 @@ public class Trip {
     }
 
     public void setDepartureDate(String departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    //used when creating the data object
-    public Trip(String departingCity, String destinationCity, int organizerId, String description, String departureDate){
-        this.departingCity = departingCity;
-        this.destinationCity = destinationCity;
-        this.organizerId = organizerId;
-        this.description = description;
         this.departureDate = departureDate;
     }
 

@@ -10,11 +10,4 @@
         android:orderInCategory="1"
         app:actionViewClass="android.widget.SearchView" />
 
-    <item
-        android:title="@string/map"
-        android:icon="@drawable/ic_map"
-        android:id="@+id/mapButton"
-        app:showAsAction="always"
-        android:orderInCategory="2"
-        />
 </menu>

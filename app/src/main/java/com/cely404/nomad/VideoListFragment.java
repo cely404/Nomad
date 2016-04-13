@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.cely404.nomad.data.YouTubeContent;
 import com.google.android.youtube.player.YouTubeIntents;
+import com.google.api.services.youtube.model.SearchResult;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +26,7 @@ public class VideoListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(new VideoListAdapter(getActivity()));
+        setListAdapter(new VideoListAdapter(getActivity(), YouTubeContent.ITEMS));
     }
 
     @Override
@@ -38,11 +39,11 @@ public class VideoListFragment extends ListFragment {
 
         final Context context = getActivity();
         final String DEVELOPER_KEY = getString(R.string.YOUTUBE_API_KEY);
-        final YouTubeContent.YouTubeVideo video = YouTubeContent.ITEMS.get(position);
+        final SearchResult video = YouTubeContent.ITEMS.get(position);
 
         if (YouTubeIntents.canResolvePlayVideoIntentWithOptions(getActivity())) {
             //Opens in the YouTube app in fullscreen and returns to this app once the video finishes
-            startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(context, video.id, true, true));
+            //startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(context, video.id, true, true));
         }
 
     }

@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cely404.nomad.data.YouTubeContent;
+import com.google.api.services.youtube.model.SearchResult;
 
 import java.util.List;
 
 public class YouTubeSongPlayerFragment extends ListFragment {
-    List<YouTubeContent.YouTubeVideo> videos = YouTubeContent.ITEMS;
+    List<SearchResult> videos = YouTubeContent.ITEMS;
 
     public YouTubeSongPlayerFragment() {
     }

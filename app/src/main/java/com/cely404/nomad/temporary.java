@@ -9,50 +9,51 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cely404.nomad.data.SearchResults;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
-import com.google.api.services.youtube.model.ResourceId;
-import com.google.api.services.youtube.model.SearchResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-public class VideoListAdapter extends BaseAdapter implements YouTubeThumbnailView.OnInitializedListener{
+/**
+ * Created by aracely_payan93 on 3/21/16.
+ */
+public class temporary extends BaseAdapter implements YouTubeThumbnailView.OnInitializedListener{
     private Context context;
     private Map<View, YouTubeThumbnailLoader> mloader;
-    private List<SearchResult> videoList = new ArrayList<>();
+    private List<SearchResults> videoList = new ArrayList<SearchResults>();
 
-    public VideoListAdapter(final Context context, List<SearchResult> videoList) {
+    public temporary (final Context context, List<SearchResults> videoList) {
         this.context = context;
         mloader = new HashMap<>();
-        if(videoList!=null){
-            this.videoList = videoList;
-        }
+        this.videoList = videoList;
     }
 
     @Override
     public int getCount() {
+        //return YouTubeContent.ITEMS.size();
         return videoList.size();
     }
 
     @Override
     public Object getItem(int position) {
+        //return YouTubeContent.ITEMS.get(position);
         return videoList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         return position;
+        //return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        SearchResult singleVideo = videoList.get(position);
-        ResourceId rId = singleVideo.getId();
+        //YouTubeContent.YouTubeVideo item = YouTubeContent.ITEMS.get(position);
 
         VideoHolder holder;
         View view = convertView;
@@ -64,14 +65,14 @@ public class VideoListAdapter extends BaseAdapter implements YouTubeThumbnailVie
             //Create the video holder
             holder = new VideoHolder();
 
-            //Set the title
-            holder.title = (TextView) view.findViewById(R.id.textView_title);
-            holder.title.setText(singleVideo.getSnippet().getTitle());
-
-            //Initialise the thumbnail
-            holder.thumb = (YouTubeThumbnailView) view.findViewById(R.id.imageView_thumbnail);
-            holder.thumb.setTag(rId.getVideoId());
-            holder.thumb.initialize(context.getString(R.string.YOUTUBE_API_KEY), this);
+//            //Set the title
+//            holder.title = (TextView) view.findViewById(R.id.textView_title);
+//            holder.title.setText(item.title);
+//
+//            //Initialise the thumbnail
+//            holder.thumb = (YouTubeThumbnailView) view.findViewById(R.id.imageView_thumbnail);
+//            holder.thumb.setTag(item.id);
+//            holder.thumb.initialize(context.getString(R.string.YOUTUBE_API_KEY), this);
 
             view.setTag(holder);
         }
@@ -80,16 +81,16 @@ public class VideoListAdapter extends BaseAdapter implements YouTubeThumbnailVie
             holder = (VideoHolder) view.getTag();
             final YouTubeThumbnailLoader loader = mloader.get(holder.thumb);
 
-            //Set the title
-//            if (singleVideo != null) {
-//                holder.title.setText(singleVideo.getSnippet().getTitle());
+//            //Set the title
+//            if (item != null) {
+//                holder.title.setText(item.title);
 //
 //                if (loader == null) {
 //                    //Loader is currently initialising
-//                    holder.thumb.setTag(rId.getVideoId());
+//                    holder.thumb.setTag(item.id);
 //                } else {
 //                    //The loader is already initialised
-//                    loader.setVideo(rId.getVideoId());
+//                    loader.setVideo(item.id);
 //                }
 //
 //            }

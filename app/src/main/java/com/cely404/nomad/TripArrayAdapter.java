@@ -6,15 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cely404.nomad.data.Trip;
 
 import java.util.List;
 
-/**
- * Created by aracely_payan93 on 3/12/16.
- */
 public class TripArrayAdapter extends ArrayAdapter<Trip> {
     private Context context;
     private List<Trip> objects;
@@ -34,11 +32,10 @@ public class TripArrayAdapter extends ArrayAdapter<Trip> {
         View view = inflater.inflate(R.layout.trip_listitem, null);
 
         TextView tvDepartureCity = (TextView) view.findViewById(R.id.tvDepartureCity);
-        TextView tvDestinationCity = (TextView) view.findViewById(R.id.tvDestinationCity);
         TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
-
+        ImageView image = (ImageView) view.findViewById(R.id.userPic);
+        image.setImageResource(R.drawable.studentgirl);
         tvDepartureCity.setText(trip.getDepartingCity());
-        tvDestinationCity.setText(trip.getDestinationCity());
         tvDescription.setText(trip.getDescription());
 
         return view;

@@ -2,22 +2,30 @@ package com.cely404.nomad.data;
 
 import android.media.Image;
 
-/**
- * Created by aracely_payan93 on 3/12/16.
- */
-public class Person {
+import java.util.ArrayList;
+
+public class User {
     private String name;
     private int age;
     private String sex;
     private String aboutMessage;
     private Image image;
+    private ArrayList<Trip> trips;
 
-    public Person(String name, int age, String sex, String aboutMessage, Image image){
+
+    public User(String name, int age, String sex, String aboutMessage, Image image){
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.aboutMessage = aboutMessage;
         this.image = image;
+    }
+    public ArrayList<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(ArrayList<Trip> trips) {
+        this.trips = trips;
     }
     public String getName() {
         return name;
