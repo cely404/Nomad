@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.fragments;
 
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cely404.nomad.activities.ItemDetailActivity;
+import com.cely404.nomad.R;
+import com.cely404.nomad.activities.ItemListActivity;
 import com.cely404.nomad.dummy.DummyContent;
 
 /**

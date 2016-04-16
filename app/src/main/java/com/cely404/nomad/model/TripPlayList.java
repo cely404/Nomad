@@ -1,4 +1,4 @@
-package com.cely404.nomad.data;
+package com.cely404.nomad.model;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

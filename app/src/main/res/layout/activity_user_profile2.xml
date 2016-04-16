@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.cely404.nomad.UserProfileActivity">
+    tools:context=".activities.UserProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@id/app_bar"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/trip_fragment"
         android:layout_below="@id/app_bar"
-        android:name="com.cely404.nomad.TripFragment"
+        android:name="com.cely404.nomad.fragments.TripFragment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/trip_fragment"/>

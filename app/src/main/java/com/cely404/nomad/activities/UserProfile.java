@@ -1,4 +1,4 @@
-package com.cely404.nomad.data;
+package com.cely404.nomad.activities;
 
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
@@ -16,6 +16,7 @@ import com.cely404.nomad.SearchQueryVideoList;
 
 public class UserProfile extends AppCompatActivity {
     public static String query;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,23 @@ public class UserProfile extends AppCompatActivity {
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by defaul
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String queryString) {
+//                //Toast.makeText(UserProfile.this, "Filter by " + query, Toast.LENGTH_LONG).show();
+//                query = queryString;
+//                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.replace(R.id.trip_fragment, new SearchQueryVideoList(), "NewFragmentTag");
+//                ft.commit();
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                Toast.makeText(UserProfile.this, "Filter by " + newText, Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+//        });
         return true;
     }
 

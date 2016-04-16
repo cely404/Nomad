@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cely404.nomad.data.Trip;
+import com.cely404.nomad.R;
+import com.cely404.nomad.model.Trip;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class TripArrayAdapter extends ArrayAdapter<Trip> {
         TextView tvDepartureCity = (TextView) view.findViewById(R.id.tvDepartureCity);
         TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
         ImageView image = (ImageView) view.findViewById(R.id.userPic);
+
         image.setImageResource(R.drawable.studentgirl);
         tvDepartureCity.setText(trip.getDepartingCity());
         tvDescription.setText(trip.getDescription());

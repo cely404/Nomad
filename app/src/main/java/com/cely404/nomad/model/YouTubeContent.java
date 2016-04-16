@@ -1,4 +1,4 @@
-package com.cely404.nomad.data;
+package com.cely404.nomad.model;
 
 import com.google.api.services.youtube.model.SearchResult;
 
@@ -19,10 +19,13 @@ public class YouTubeContent {
     public static void addItem(final SearchResult item) {
         ITEMS.add(item);
     }
-
+    public static void clear(){
+        ITEMS = new ArrayList<>();
+    }
     /**
      * A POJO representing a YouTube video
      */
+
     public static class YouTubeVideo {
         public String id;
         public String title;

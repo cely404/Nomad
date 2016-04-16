@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.fragments;
 
 
 import android.app.ListFragment;
@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ListView;
 
-import com.cely404.nomad.data.YouTubeContent;
+import com.cely404.nomad.R;
+import com.cely404.nomad.adapters.VideoListAdapter;
+import com.cely404.nomad.model.YouTubeContent;
 import com.google.android.youtube.player.YouTubeIntents;
 import com.google.api.services.youtube.model.SearchResult;
 
@@ -43,7 +45,7 @@ public class VideoListFragment extends ListFragment {
 
         if (YouTubeIntents.canResolvePlayVideoIntentWithOptions(getActivity())) {
             //Opens in the YouTube app in fullscreen and returns to this app once the video finishes
-            //startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(context, video.id, true, true));
+            startActivity(YouTubeIntents.createPlayVideoIntentWithOptions(getActivity(),video.getId().getVideoId(), true, true));
         }
 
     }

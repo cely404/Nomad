@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.dialogs;
 
 
 import android.app.AlertDialog;
@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import com.cely404.nomad.R;
 
 /**
  * A simple {@link Fragment} subclass.

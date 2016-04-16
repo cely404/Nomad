@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.fragments;
 
 import android.app.ListFragment;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cely404.nomad.data.YouTubeContent;
+import com.cely404.nomad.R;
+import com.cely404.nomad.model.YouTubeContent;
 import com.google.api.services.youtube.model.SearchResult;
 
 import java.util.List;

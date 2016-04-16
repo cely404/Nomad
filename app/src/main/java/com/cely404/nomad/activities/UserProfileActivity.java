@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -12,6 +12,10 @@ import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.cely404.nomad.R;
+import com.google.android.youtube.player.YouTubeApiServiceUtil;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+
 public class UserProfileActivity extends AppCompatActivity{
 
     @Override
@@ -20,6 +24,14 @@ public class UserProfileActivity extends AppCompatActivity{
         setContentView(R.layout.activity_user_profile2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        final YouTubeInitializationResult result = YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(this);
+
+        if (result != YouTubeInitializationResult.SUCCESS) {
+            //If there are any issues we can show an error dialog.
+            result.getErrorDialog(this, 0).show();
+        }
     }
 
     @Override

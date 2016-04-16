@@ -1,5 +1,6 @@
 package com.cely404.nomad.data;
 
+import com.cely404.nomad.model.Trip;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;

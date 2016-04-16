@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

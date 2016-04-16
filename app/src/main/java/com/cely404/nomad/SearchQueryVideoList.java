@@ -10,22 +10,24 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cely404.nomad.activities.UserProfile;
+import com.cely404.nomad.adapters.VideoListAdapter;
 import com.cely404.nomad.data.SearchResults;
-import com.cely404.nomad.data.YouTubeContent;
+import com.cely404.nomad.dialogs.SearchResultDialogFragment;
+import com.cely404.nomad.model.YouTubeContent;
 import com.google.android.youtube.player.YouTubeIntents;
 import com.google.api.services.youtube.model.SearchResult;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SearchQueryVideoList extends ListFragment implements SearchResultDialogFragment.SearchResultDialogListener{
-    public static List<SearchResult> list = new ArrayList<>();
+    public static List<SearchResult> list;
     private static int videoPosition;
     public SearchQueryVideoList() {
-        new SearchResults().execute("hello");
+        new SearchResults().execute(UserProfile.query);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class SearchQueryVideoList extends ListFragment implements SearchResultDi
         final String DEVELOPER_KEY = getString(R.string.YOUTUBE_API_KEY);
         DialogFragment dialog = new SearchResultDialogFragment();
         dialog.setTargetFragment(this,0);
-        dialog.show(getFragmentManager(), "SearchResultDialogFragment");
+        dialog.show(getFragmentManager(), "dialogs.SearchResultDialogFragment");
 
     }
 

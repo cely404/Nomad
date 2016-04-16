@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.activities;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -11,6 +11,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.cely404.nomad.R;
+import com.cely404.nomad.data.TripData;
+import com.cely404.nomad.model.Trip;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -22,12 +25,18 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
 public class MapActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
+    
     private GoogleMap mMap = null;
     private GoogleApiClient mLocationClient;
     private static final int REQUEST_LOCATION = 2;
     private static final int ERROR_DIALOG_REQUEST = 4580;
+
+    //to be replaced with a call to DB
+    private static final List<Trip> trips = new TripData().getTrips();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +44,21 @@ public class MapActivity extends AppCompatActivity implements GoogleApiClient.Co
 
         if (servicesOK()) {
             setContentView(R.layout.activity_map);
-            Snackbar.make(findViewById(R.id.map), "Services OK", Snackbar.LENGTH_LONG)
+            Snackbar.make(findViewById(R.id.map), "Services OK, infalting layout", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             initMap();
         }
     }
 
-
+    /**
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     public void onRequestPermissionResult(int requestCode,
                                           String[] permissions,
                                           int[] grantResults) {
-        Toast.makeText(this, "Entering onRequestPermssionResult", Toast.LENGTH_LONG).show();
-
         if (requestCode == REQUEST_LOCATION) {
             if (grantResults.length == 1
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -59,38 +71,58 @@ public class MapActivity extends AppCompatActivity implements GoogleApiClient.Co
         }
     }
 
+    
+    /**
+     * Function checks to make sure that the user has google play
+     * services available.
+     * @return boolean indicating if google play services are available
+     */
     public boolean servicesOK() {
+
         GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
         int resultCode = googleAPI.isGooglePlayServicesAvailable(this);
+        //Connection was successful, Google Play Services available
         if (resultCode == ConnectionResult.SUCCESS) {
             return true;
+        //Connection not successful but user may be able to fix it
+        //prompt action
         } else if (googleAPI.isUserResolvableError(resultCode)) {
             Dialog dialog = googleAPI.getErrorDialog(this, resultCode, ERROR_DIALOG_REQUEST);
             dialog.show();
+        //Google play services unavailable, cannot proceed
         } else {
             Toast.makeText(getApplicationContext(), "GooglePlayServices not found", Toast.LENGTH_LONG).show();
         }
+
         return false;
     }
 
+
+    /**
+     *  A google map object is needed to interact with.
+     *  This function attemps to initilize the map if it is
+     *  null and returns a boolean indicating if it is initialized
+     *
+     */
     private boolean initMap() {
+        //if its null, try to initialize it
         if (mMap == null) {
-            Snackbar.make(findViewById(R.id.map), "map is null, in initmap", Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show();
             MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
+                    //guaranteed to be non null
                     mMap = googleMap;
 
-                    Snackbar.make(findViewById(R.id.map), "Google Map init now", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(findViewById(R.id.map), "Google Map now initialized", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show();
+
+                    //now that we have a map, try and enable location services
                     mLocationClient = new GoogleApiClient.Builder(MapActivity.this)
                             .addApi(LocationServices.API)
                             .addConnectionCallbacks(MapActivity.this)
                             .addOnConnectionFailedListener(MapActivity.this)
                             .build();
-
                     mLocationClient.connect();
                 }
             });
@@ -98,6 +130,10 @@ public class MapActivity extends AppCompatActivity implements GoogleApiClient.Co
         return (mMap != null);
     }
 
+
+    /**
+     *  This function will attempt to retrieve the last stored
+     */
     public void goToCurrentLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -119,27 +155,28 @@ public class MapActivity extends AppCompatActivity implements GoogleApiClient.Co
                         latLong, 15
                 );
                 mMap.animateCamera(update);
-//                Locale locale = new Locale(Locale.ENGLISH.getLanguage());
-//                Address address = new Address(locale);
-//                address.set
             }
         }
     }
+
+    //success callback for location client, mLocationClient
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "OnConnected ready!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Location Services ready!", Toast.LENGTH_LONG).show();
         goToCurrentLocation();
     }
 
+    //conection suspended callback for location client, mLocationClient
     @Override
     public void onConnectionSuspended(int i) {
-        Toast.makeText(this, "OnConnected Suspended!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Location Services suspended", Toast.LENGTH_LONG).show();
 
     }
 
+    //failed to connect to location services
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(this, "OnConnected Failed!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Failed to connect to location services!", Toast.LENGTH_LONG).show();
 
     }
 }

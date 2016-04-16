@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.fragments;
 
 import android.app.ListFragment;
 import android.content.Intent;
@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.cely404.nomad.data.Trip;
+import com.cely404.nomad.R;
+import com.cely404.nomad.activities.UserProfile;
+import com.cely404.nomad.adapters.TripArrayAdapter;
 import com.cely404.nomad.data.TripData;
-import com.cely404.nomad.data.UserProfile;
+import com.cely404.nomad.model.Trip;
 
 import java.util.List;
 
@@ -47,6 +49,7 @@ public class TripFragment extends ListFragment {
 
         return inflater.inflate(R.layout.trip_fragment, container, false);
     }
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
         if(position == 1){

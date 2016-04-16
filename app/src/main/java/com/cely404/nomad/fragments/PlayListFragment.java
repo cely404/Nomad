@@ -1,4 +1,4 @@
-package com.cely404.nomad;
+package com.cely404.nomad.fragments;
 
 
 import android.app.ListFragment;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.cely404.nomad.R;
 
 /**
  * A simple {@link Fragment} subclass.
